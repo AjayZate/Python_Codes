@@ -1,0 +1,34 @@
+import re
+
+'''Loading text file as a string'''
+
+with open('C:/Users/Admin/Downloads/wordcountproblem.txt', 'r') as file:
+    s = file.read().replace('\n', '')
+    
+'''removing the text with brackets'''
+s1 = re.sub(r"\([^()]*\)", "", s)
+
+# removing the unwanted symbols from text
+s2 = s1.replace('-','').replace('?','').replace('!','').replace('.','').replace('/',' ').replace(',','').replace("’", "").replace('“','').replace("”","")
+s2 = s2.replace("  "," ")
+
+#converting string to list to operate furthur 
+s3 = s2.split(" ")
+
+# counting the words
+count = 0
+words_count = {}
+ch = []
+for word in s3:
+    count = len(word)
+    ch.append(count)
+
+word_lens  = set(ch)
+
+for i in word_lens:
+    for j in ch:
+        if j == i:
+            count +=1
+    words_count[i] = count
+    count = 0
+print(words_count)   
