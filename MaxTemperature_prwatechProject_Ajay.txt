@@ -1,0 +1,32 @@
+with open("C:/Users/Admin/Downloads/Temperature.txt", 'r') as file:
+    next(file)
+    content = []
+    for line in file:
+        new_line = line.strip()
+        lst = new_line.split(' ')
+        lst = [int(m) for m in lst]
+        content.append(lst)
+#print(content)
+
+years = []
+for data in content:
+    years.append(data[0])
+years = list(set(years))
+#print(years)
+
+lst1 = []
+year_temps = {}
+for i in range(len(years)):
+    for j in range(len(content)):
+        if content[j][0] == (years[i]):
+            lst1.append(content[j][1])
+    #print(lst)
+    #print(max(lst))
+    year_temps[years[i]] = max(lst1)
+    
+    lst1 = []
+    
+#print(year_temps)
+
+for num in year_temps:
+    print(f"{num} {year_temps[num]}")
